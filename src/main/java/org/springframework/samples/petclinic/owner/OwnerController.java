@@ -20,6 +20,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,18 +40,27 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Juergen Hoeller
  * @author Ken Krebs
  * @author Arjen Poutsma
- * @author Michael Isvy
+ * @author Michael IsvyR
  */
 @Controller
 class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
-
 	private final OwnerRepository owners;
 
-	public OwnerController(OwnerRepository clinicService) {
+	public OwnerController(OwnerRepository clinicService){
 		this.owners = clinicService;
 	}
+
+	/* 빈 사용 방법 - 필드 주입 */
+//	@Autowired
+//	private OwnerRepository owners;
+
+//	/* 빈 사용 방법 - Setter 활용 */
+//	@Autowired
+//	public void setOwners(OwnerRepository owners){
+//		this.owners = owners;
+//	}
 
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
